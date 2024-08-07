@@ -1,6 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { FaceSnap } from '../models/face-snap';
 import { NgClass, NgStyle, DatePipe, UpperCasePipe } from '@angular/common';
+import { FaceSnapsService } from '../services/face-snaps.service';
 
 @Component({
   selector: 'app-face-snap',
@@ -11,6 +12,7 @@ import { NgClass, NgStyle, DatePipe, UpperCasePipe } from '@angular/common';
 })
 export class FaceSnapComponent {
   @Input() faceSnap!: FaceSnap;
+  id!: string;
   title!: string;
   description!: string;
   createdAt!: Date;
@@ -19,9 +21,12 @@ export class FaceSnapComponent {
   snapButtonText!: string;
   userHasSnap!: boolean
 
+  constructor(private faceSnapService: FaceSnapsService){
+  }
   ngOnInit():void {
-    this.title = 'Archivald';
-    this.description = 'My first snap';
+    this.title = 'Archivaldnnnnnnn';
+    this.id = 'bb89';
+    this.description = 'My first snapiiiiiiiiiiiiiiii';
     this.createdAt = new Date();
     this.imageUrl = 'https://cdn.pixabay.com/photo/2015/05/31/16/03/teddy-bear-792273_1280.jpg';
     this.snaps = 5;
@@ -39,15 +44,17 @@ export class FaceSnapComponent {
   }
 
   snap(){
-    this.faceSnap.addSnap();
-    this.snapButtonText = 'Oups unsnap';
-    //this.userHasSnap = true;
+    console.log(this.faceSnap);
+    // this.faceSnapService.snapFaceById(this.faceSnap.id, 'snap');
+    // this.snapButtonText = 'Oh Snap!';
+    // this.userHasSnap = false;
   }
 
   unsnap(){
     this.faceSnap.removeSnap();
-    this.snapButtonText = 'Oh Snap!'
-    //this.userHasSnap = false;
+    this.snapButtonText = 'Oops Unsnap!';
+    this.userHasSnap = false;
   }
+
 
 }
