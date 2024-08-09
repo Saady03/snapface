@@ -2,6 +2,7 @@ import { Component, Input } from '@angular/core';
 import { FaceSnap } from '../models/face-snap';
 import { NgClass, NgStyle, DatePipe, UpperCasePipe } from '@angular/common';
 import { FaceSnapsService } from '../services/face-snaps.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-face-snap',
@@ -21,7 +22,7 @@ export class FaceSnapComponent {
   snapButtonText!: string;
   userHasSnap!: boolean
 
-  constructor(private faceSnapService: FaceSnapsService){
+  constructor(private router:Router ){
   }
   ngOnInit():void {
     this.title = 'Archivaldnnnnnnn';
@@ -56,5 +57,7 @@ export class FaceSnapComponent {
     this.userHasSnap = false;
   }
 
-
+  onViewFaceSnap() {
+    this.router.navigateByUrl(`facesnaps/${this.faceSnap.id}`);
+  }
 }
